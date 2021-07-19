@@ -4,7 +4,7 @@
 #
 Name     : flac
 Version  : 1.3.3
-Release  : 32
+Release  : 33
 URL      : http://downloads.xiph.org/releases/flac/flac-1.3.3.tar.xz
 Source0  : http://downloads.xiph.org/releases/flac/flac-1.3.3.tar.xz
 Summary  : Free Lossless Audio Codec Library
@@ -127,13 +127,16 @@ popd
 pushd ..
 cp -a flac-1.3.3 buildavx2
 popd
+pushd ..
+cp -a flac-1.3.3 buildavx512
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1626715601
+export SOURCE_DATE_EPOCH=1626721464
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -164,6 +167,16 @@ export LDFLAGS="$LDFLAGS -m64 -march=haswell"
 %configure --disable-static
 make  %{?_smp_mflags}
 popd
+unset PKG_CONFIG_PATH
+pushd ../buildavx512/
+export CFLAGS="$CFLAGS -m64 -march=skylake-avx512 -mprefer-vector-width=256"
+export CXXFLAGS="$CXXFLAGS -m64 -march=skylake-avx512 -mprefer-vector-width=256"
+export FFLAGS="$FFLAGS -m64 -march=skylake-avx512 -mprefer-vector-width=256"
+export FCFLAGS="$FCFLAGS -m64 -march=skylake-avx512 -mprefer-vector-width=256"
+export LDFLAGS="$LDFLAGS -m64 -march=skylake-avx512"
+%configure --disable-static
+make  %{?_smp_mflags}
+popd
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
@@ -174,9 +187,11 @@ cd ../build32;
 make %{?_smp_mflags} check || : || :
 cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
+cd ../buildavx512;
+make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1626715601
+export SOURCE_DATE_EPOCH=1626721464
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flac
 cp %{_builddir}/flac-1.3.3/COPYING.FDL %{buildroot}/usr/share/package-licenses/flac/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
@@ -192,6 +207,9 @@ for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi
 popd
+pushd ../buildavx512/
+%make_install_avx512
+popd
 pushd ../buildavx2/
 %make_install_avx2
 popd
@@ -203,6 +221,8 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/flac
+/usr/bin/haswell/avx512_1/flac
+/usr/bin/haswell/avx512_1/metaflac
 /usr/bin/haswell/flac
 /usr/bin/haswell/metaflac
 /usr/bin/metaflac
@@ -223,6 +243,7 @@ popd
 /usr/include/FLAC/ordinals.h
 /usr/include/FLAC/stream_decoder.h
 /usr/include/FLAC/stream_encoder.h
+/usr/lib64/haswell/avx512_1/libFLAC.so
 /usr/lib64/haswell/libFLAC++.so
 /usr/lib64/haswell/libFLAC.so
 /usr/lib64/libFLAC++.so
@@ -246,6 +267,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/haswell/avx512_1/libFLAC.so.8
+/usr/lib64/haswell/avx512_1/libFLAC.so.8.3.0
 /usr/lib64/haswell/libFLAC++.so.6
 /usr/lib64/haswell/libFLAC++.so.6.3.0
 /usr/lib64/haswell/libFLAC.so.8
