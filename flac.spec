@@ -4,7 +4,7 @@
 #
 Name     : flac
 Version  : 1.3.4
-Release  : 42
+Release  : 43
 URL      : https://downloads.xiph.org/releases/flac/flac-1.3.4.tar.xz
 Source0  : https://downloads.xiph.org/releases/flac/flac-1.3.4.tar.xz
 Summary  : Free Lossless Audio Codec Library
@@ -148,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656027978
+export SOURCE_DATE_EPOCH=1656110129
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -203,7 +203,7 @@ cd ../buildavx512;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1656027978
+export SOURCE_DATE_EPOCH=1656110129
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flac
 cp %{_builddir}/flac-1.3.4/COPYING.FDL %{buildroot}/usr/share/package-licenses/flac/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
