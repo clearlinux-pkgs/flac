@@ -1,0 +1,6 @@
+FLAC is open source software that can reduce the amount of storage space needed
+to store digital audio signals without needing to remove information in doing
+so. The files read and produced by this software are called FLAC files. As
+these files (which follow the FLAC format) can be read from and written to by
+other software as well, this software is often referred to as the FLAC
+reference implementation.

@@ -1,0 +1,5 @@
+--enable-silent-rules
+--disable-valgrind-testing
+--disable-doxygen-docs
+--disable-xmms-plugin
+--disable-version-from-git
