@@ -5,7 +5,7 @@
 #
 Name     : flac
 Version  : 1.4.2
-Release  : 52
+Release  : 53
 URL      : https://downloads.xiph.org/releases/flac/flac-1.4.2.tar.xz
 Source0  : https://downloads.xiph.org/releases/flac/flac-1.4.2.tar.xz
 Summary  : Free Lossless Audio Codec Library
@@ -126,15 +126,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682962701
+export SOURCE_DATE_EPOCH=1685502955
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -ftree-loop-vectorize -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -ftree-loop-vectorize -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -ftree-loop-vectorize -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -ftree-loop-vectorize -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -ftree-loop-vectorize -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -ftree-loop-vectorize -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -ftree-loop-vectorize -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffast-math -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -ftree-loop-vectorize -fzero-call-used-regs=used -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure --disable-static --enable-silent-rules \
 --disable-valgrind-testing \
 --disable-doxygen-docs \
@@ -177,7 +177,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1682962701
+export SOURCE_DATE_EPOCH=1685502955
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flac
 cp %{_builddir}/flac-%{version}/COPYING.FDL %{buildroot}/usr/share/package-licenses/flac/bd75d59f9d7d9731bfabdc48ecd19e704d218e38 || :
@@ -217,8 +217,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libFLAC++.so
-/V3/usr/lib64/libFLAC.so
 /usr/include/FLAC++/all.h
 /usr/include/FLAC++/decoder.h
 /usr/include/FLAC++/encoder.h
@@ -254,9 +252,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libFLAC++.so.10
 /V3/usr/lib64/libFLAC++.so.10.0.0
-/V3/usr/lib64/libFLAC.so.12
 /V3/usr/lib64/libFLAC.so.12.0.0
 /usr/lib64/libFLAC++.so.10
 /usr/lib64/libFLAC++.so.10.0.0
