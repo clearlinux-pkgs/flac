@@ -4,13 +4,13 @@
 # Using build pattern: configure
 #
 Name     : flac
-Version  : 1.4.2
-Release  : 53
-URL      : https://downloads.xiph.org/releases/flac/flac-1.4.2.tar.xz
-Source0  : https://downloads.xiph.org/releases/flac/flac-1.4.2.tar.xz
+Version  : 1.4.3
+Release  : 54
+URL      : https://downloads.xiph.org/releases/flac/flac-1.4.3.tar.xz
+Source0  : https://downloads.xiph.org/releases/flac/flac-1.4.3.tar.xz
 Summary  : Free Lossless Audio Codec Library
 Group    : Development/Tools
-License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1
+License  : GFDL-1.2 GPL-2.0 LGPL-2.1
 Requires: flac-bin = %{version}-%{release}
 Requires: flac-lib = %{version}-%{release}
 Requires: flac-license = %{version}-%{release}
@@ -112,13 +112,13 @@ man components for the flac package.
 
 
 %prep
-%setup -q -n flac-1.4.2
-cd %{_builddir}/flac-1.4.2
+%setup -q -n flac-1.4.3
+cd %{_builddir}/flac-1.4.3
 pushd ..
-cp -a flac-1.4.2 build32
+cp -a flac-1.4.3 build32
 popd
 pushd ..
-cp -a flac-1.4.2 buildavx2
+cp -a flac-1.4.3 buildavx2
 popd
 
 %build
@@ -126,7 +126,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685502955
+export SOURCE_DATE_EPOCH=1687545679
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -177,13 +177,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1685502955
+export SOURCE_DATE_EPOCH=1687545679
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flac
 cp %{_builddir}/flac-%{version}/COPYING.FDL %{buildroot}/usr/share/package-licenses/flac/bd75d59f9d7d9731bfabdc48ecd19e704d218e38 || :
 cp %{_builddir}/flac-%{version}/COPYING.GPL %{buildroot}/usr/share/package-licenses/flac/4cc77b90af91e615a64ae04893fdffa7939db84c || :
 cp %{_builddir}/flac-%{version}/COPYING.LGPL %{buildroot}/usr/share/package-licenses/flac/caeb68c46fa36651acf592771d09de7937926bb3 || :
-cp %{_builddir}/flac-%{version}/COPYING.Xiph %{buildroot}/usr/share/package-licenses/flac/a31ca0ed88bf092efaefe86dfa49e1f63051fe28 || :
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -252,24 +251,23 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libFLAC++.so.10.0.0
-/V3/usr/lib64/libFLAC.so.12.0.0
+/V3/usr/lib64/libFLAC++.so.10.0.1
+/V3/usr/lib64/libFLAC.so.12.1.0
 /usr/lib64/libFLAC++.so.10
-/usr/lib64/libFLAC++.so.10.0.0
+/usr/lib64/libFLAC++.so.10.0.1
 /usr/lib64/libFLAC.so.12
-/usr/lib64/libFLAC.so.12.0.0
+/usr/lib64/libFLAC.so.12.1.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libFLAC++.so.10
-/usr/lib32/libFLAC++.so.10.0.0
+/usr/lib32/libFLAC++.so.10.0.1
 /usr/lib32/libFLAC.so.12
-/usr/lib32/libFLAC.so.12.0.0
+/usr/lib32/libFLAC.so.12.1.0
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/flac/4cc77b90af91e615a64ae04893fdffa7939db84c
-/usr/share/package-licenses/flac/a31ca0ed88bf092efaefe86dfa49e1f63051fe28
 /usr/share/package-licenses/flac/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 /usr/share/package-licenses/flac/caeb68c46fa36651acf592771d09de7937926bb3
 
