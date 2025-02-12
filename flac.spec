@@ -7,7 +7,7 @@
 #
 Name     : flac
 Version  : 1.5.0
-Release  : 55
+Release  : 56
 URL      : https://downloads.xiph.org/releases/flac/flac-1.5.0.tar.xz
 Source0  : https://downloads.xiph.org/releases/flac/flac-1.5.0.tar.xz
 Summary  : Free Lossless Audio Codec Library
