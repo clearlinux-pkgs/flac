@@ -4,6 +4,7 @@ Configure miss: arm_neon.h
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
 Configure miss: g++ option to enable C++11 features
+Configure miss: i686-generic-linux-gnu-file
 Configure miss: whether to add -D_FORTIFY_SOURCE=2 to CPPFLAGS
 Configure miss: whether to add -D_FORTIFY_SOURCE=2 to CPPFLAGS
 Configure miss: whether to add -D_FORTIFY_SOURCE=2 to CPPFLAGS
@@ -13,3 +14,5 @@ Configure miss: whether to enable debugging
 Configure miss: whether we are using the CLANG C compiler
 Configure miss: whether we are using the CLANG C compiler
 Configure miss: whether we are using the CLANG C compiler
+Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-file
